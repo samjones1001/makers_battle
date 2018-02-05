@@ -1,2 +1,12 @@
 <h3><%= @player_1 %> vs. <%= @player_2 %></h3>
 <h4><%= @player_2 %>: <%= @player_2_hp %>hp</h4>
+
+<h5>
+  <% if @action %>
+    <%= @player_1 %> <%= @action %> <%= @player_2 %>!
+  <% end %>
+</h5>
+
+<form class="" action="/attack" method="post">
+  <input type="submit" name="action" value="Attack!">
+</form>
