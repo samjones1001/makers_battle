@@ -28,7 +28,7 @@ class Battle < Sinatra::Base
   post '/attack' do
     session[:action] = 'attacked'
     @game = $game
-    @game.attack(@game.player_2)
+    @game.attack(@game.opponent)
     @game.switch_turns
     redirect '/play'
   end
