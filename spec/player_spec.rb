@@ -11,9 +11,9 @@ describe Player do
     expect(player.hitpoints).to eq(Player::STARTING_HP)
   end
 
-  describe('attacked') do
+  describe('take_damage') do
     it('reduces current hp by 10') do
-      expect{ player.attacked }.to change{ player.hitpoints }.by(-10)
+      expect{ player.take_damage }.to change{ player.hitpoints }.by(-10)
     end
   end
 end
