@@ -6,9 +6,14 @@
   <% if @action %>
     <%= @game.opponent.name %> <%= @action %> <%= @game.current_player.name %>!
   <% end %>
+  <% if @game.game_over? %>
+    <%= @game.opponent.name %> wins!
+  <% end %>
 </h5>
 
-<p><%= @game.current_player.name %>'s turn</p>
-<form class="" action="/attack" method="post">
-  <input type="submit" name="action" value="Attack!">
-</form>
+<% if !@game.game_over? %>
+  <p><%= @game.current_player.name %>'s turn</p>
+  <form class="" action="/attack" method="post">
+    <input type="submit" name="action" value="Attack!">
+  </form>
+<% end %>

@@ -1,9 +1,9 @@
 require 'game'
 
 describe Game do
-  let(:game)      { described_class.new(player, player_2) }
-  let(:player)    { double :player }
-  let(:player_2)  { double :player }
+  let(:game)            { described_class.new(player, player_2) }
+  let(:player)          { double :player }
+  let(:player_2)        { double :player }
 
   it 'has a player one' do
     expect(game.player_1).to eq(player)
@@ -43,6 +43,13 @@ describe Game do
     it 'switched the opponent' do
       game.switch_turns
       expect(game.opponent).to eq(player)
+    end
+  end
+
+  describe '#game_over?' do
+    it 'returns true when one player reaches 0hp' do
+      allow(player).to receive(:dead?).and_return(true)
+      expect(game.game_over?).to eq(true)
     end
   end
 end

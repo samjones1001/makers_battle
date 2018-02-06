@@ -16,4 +16,11 @@ describe Player do
       expect{ player.take_damage }.to change{ player.hitpoints }.by(-10)
     end
   end
+
+  describe('#dead?') do
+    it('returns true if a player is reduced to 0hp') do
+      5.times { player.take_damage }
+      expect(player).to be_dead
+    end
+  end
 end
