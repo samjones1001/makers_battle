@@ -1,9 +1,9 @@
-<h3><%= @player_1_name %> vs. <%= @player_2_name %></h3>
-<h4><%= @player_2_name %>: <%= @player_2_hp %>hp</h4>
+<h3><%= @game.player_1.name %> vs. <%= @game.player_2.name %></h3>
+<h4><%= @game.player_2.name %>: <%= @game.player_2.hitpoints %>hp</h4>
 
 <h5>
   <% if @action %>
-    <%= @player_1_name %> <%= @action %> <%= @player_2_name %>!
+    <%= @game.player_1.name %> <%= @action %> <%= @game.player_2.name %>!
   <% end %>
 </h5>
 
