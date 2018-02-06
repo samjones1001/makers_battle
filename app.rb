@@ -19,12 +19,13 @@ class Battle < Sinatra::Base
     @player_1_name = $player_1.name
     @player_2_name = $player_2.name
     @action = session[:action]
-    @player_2_hp = 50
+    @player_2_hp = $player_2.hitpoints
     erb :play
   end
 
   post '/attack' do
     session[:action] = 'attacked'
+    $player_2.attacked
     redirect '/play'
   end
 
