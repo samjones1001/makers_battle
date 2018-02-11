@@ -6,6 +6,10 @@ class Battle < Sinatra::Base
   enable :sessions
   set :session_secret, 'super_secret'
 
+  before do
+    @game = Game.instance
+  end
+
   get '/' do
     erb :index
   end
@@ -13,13 +17,12 @@ class Battle < Sinatra::Base
   post '/names' do
     player_1 = Player.new(params[:player_1])
     player_2 = Player.new(params[:player_2])
-    $game = Game.new(player_1, player_2)
+    @game = Game.create(player_1, player_2)
     session[:action] = nil
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
     @action = session[:action]
     p @action
     erb :play
@@ -27,7 +30,6 @@ class Battle < Sinatra::Base
 
   post '/attack' do
     session[:action] = 'attacked'
-    @game = $game
     @game.attack(@game.opponent)
     @game.switch_turns
     redirect '/play'
